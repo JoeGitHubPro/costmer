@@ -37,7 +37,7 @@ namespace costmer
                 string Name = txtName.Text;
                 string Adress = txtAdress.Text;
 
-                //================================
+
                
                 StreamReader R1 = new StreamReader("Data.txt");
                 string R = R1.ReadToEnd();
@@ -74,9 +74,6 @@ namespace costmer
                     else
                     {
 
-                        
-
-
 
                         if (!Directory.Exists("Image"))
                         {
@@ -84,8 +81,8 @@ namespace costmer
                         }
                         else
                         {
-                            //string Path1 = Path.GetFileName(PTB.Fil);
-                            if (PTB.Image is Image                /*|| File.Exists("Image/" + ".jpg")*/)      //ooooooooooooooooooooooooooooooooooooooooooooo
+                           
+                            if (PTB.Image is Image )     
                             {
                                 
                                 PTB.Image.Save("Image/" + ID + ".jpg");
@@ -103,29 +100,7 @@ namespace costmer
                         StreamWriter W1 = new StreamWriter("Data.txt", true);
                         W1.WriteLine(ID + " \t " + Name + " \t " + Adress);
                         W1.Close();
-                        
-
-                        //----------image()------------------
-
-                        //if (!Directory.Exists("Image"))
-                        //{
-                        //    Directory.CreateDirectory("Image");
-                        //}
-                        //else
-                        //{
-                        //    if (File.Exists("Image/" + ID + ".jpg"))
-                        //    { PTB.Image.Save("Image/" + ID + ".jpg"); }
-                        //    //else
-                        //    //{
-                        //    //    MessageBox.Show("Please Add Photo");
-                        //    //    return;
-
-                        //    //}
-
-
-                        //}
-                        //----------------------------
-
+ 
 
                         MessageBox.Show("The costumer has been added sucssefully");
                         txtID.Clear();
@@ -134,9 +109,7 @@ namespace costmer
                         txtID.Focus();
                         PTB.Image = new PictureBox().Image;// to clear  PictureBox //
                     }
-                }
-                //====================================
-
+                }   
 
             }catch(Exception ex)
             {
@@ -164,19 +137,8 @@ namespace costmer
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-
-
             Form2 Frm = new Form2();
             Frm.ShowDialog();
-
-           
-            
-
-
-
-
-
-
         }
 
         public void btnFind_Click(object sender, EventArgs e)
@@ -186,8 +148,7 @@ namespace costmer
             string Name = txtName.Text;
             string Adress = txtAdress.Text;
            
-            
-            
+                        
             if(ID!="")
             {
                 StreamReader R2 = new StreamReader("Data.txt");
@@ -201,20 +162,11 @@ namespace costmer
                     line = R2.ReadLine();
                     if(line!=null)
                     {
-                        string[] Data = line.Split(" \t ");                 //++++++++++++++++++++++++++++++++++
-//=================================================================
+                        string[] Data = line.Split(" \t ");               
+
                     if(Data[0]==ID)
                         {
-                            //Form3 FRM3 = new Form3();
-                            //Label lbl3 = new Label();
-                            //lbl3.Text = ";";
-                            //***************************************************************
-                            //MessageBox.Show("Cosumer ID : "+Data[0]+
-                            //     "\n"+ "Cosumer Name : " + Data[1]+
-                            //    "\n"+ "Cosumer Adress : " + Data[2]);
-
-
-
+                          
                             Form3 frm = new Form3();
                             frm.by("Cosumer ID :  " + Data[0] +
                                "\n\n" + "Cosumer Name :  " + Data[1] +
@@ -226,28 +178,17 @@ namespace costmer
                             string Path = "image/" +Data[0] + ".jpg";
 
                             if (File.Exists(Path))
-
-
-                            //PTB.Image = Image.FromFile(Path);
                             {
                                 frm.pic(Path);
                             }
                             
-
                             frm.ShowDialog();
-
-
-
 
                             F = true;
 
-
-                            break;
-                            
-                            
+                            break;                                                      
                         }                  
                       
-     //=================================================================
                     }
                     else 
                     { 
@@ -257,10 +198,6 @@ namespace costmer
 
 
                 } while (line != null);
-
-
-                
-
 
              R2.Close();
 
@@ -284,7 +221,6 @@ namespace costmer
             if (e.KeyCode == Keys.Enter)
             {
                 txtName.Focus();
-
             }
         }
 
@@ -306,17 +242,12 @@ namespace costmer
 
         private void btnAddPhoto_Click(object sender, EventArgs e)
         {
-
-         //   OpenFileDialog O = new OpenFileDialog();
             OFD.Filter = "Images|*.jpg";
 
             if(OFD.ShowDialog()==DialogResult.OK)
             {
                 PTB.Image = Image.FromFile(OFD.FileName); 
-            }
-
-
-            
+            }            
         }
 
         private void PTB_Click(object sender, EventArgs e)
@@ -376,19 +307,6 @@ namespace costmer
 
         public void button1_Click_1(object sender, EventArgs e)
         {
-            //Form3 frm = new Form3();
-            //frm.by("","");
-            //frm.ShowDialog();
-            
-
-
-
-          ///*public*/ string p = "youssef m";
-
-
-
-
-
         }
         string[] files = null;
         private void PTB_DragEnter(object sender, DragEventArgs e)
